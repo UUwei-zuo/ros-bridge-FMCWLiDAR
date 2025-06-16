@@ -29,7 +29,7 @@ from carla_ros_bridge.ego_vehicle import EgoVehicle
 from carla_ros_bridge.gnss import Gnss
 from carla_ros_bridge.imu import ImuSensor
 from carla_ros_bridge.lane_invasion_sensor import LaneInvasionSensor
-from carla_ros_bridge.lidar import Lidar, SemanticLidar
+from carla_ros_bridge.lidar import Lidar, SemanticLidar, FMCWLidar
 from carla_ros_bridge.marker_sensor import MarkerSensor
 from carla_ros_bridge.object_sensor import ObjectSensor
 from carla_ros_bridge.odom_sensor import OdometrySensor
@@ -388,6 +388,9 @@ class ActorFactory(object):
                 if carla_actor.type_id.endswith("sensor.lidar.ray_cast"):
                     actor = Lidar(uid, name, parent, spawn_pose, self.node,
                                   carla_actor, self.sync_mode)
+                elif carla_actor.type_id.startswith("sensor.lidar.fmcw"):
+                    actor = FMCWLidar(uid, name, parent, spawn_pose, self.node,
+                                       carla_actor, self.sync_mode)     
                 elif carla_actor.type_id.endswith(
                         "sensor.lidar.ray_cast_semantic"):
                     actor = SemanticLidar(uid, name, parent, spawn_pose,

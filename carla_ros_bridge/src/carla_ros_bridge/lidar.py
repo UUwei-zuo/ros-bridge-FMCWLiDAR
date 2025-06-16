@@ -264,9 +264,6 @@ class FMCWLidar(Sensor):
         valid = valid[valid_mask]
 
         # Convert spherical coordinates to Cartesian coordinates
-        # Note: Carla uses left-handed coordinate system, ROS uses right-handed
-        # Azimuth: negative to convert coordinate system
-        # Elevation: add 90 degrees to convert from elevation to polar angle
         azimuth_rad = numpy.deg2rad(-azimuth)
         elevation_rad = numpy.deg2rad(90 + elevation)
 
